@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - eShop</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <img src="/images/logo.jpg" width="125px">
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="/all-products">Products</a></li>
+                <li><a href="/mon-panier">My Cart</a></li>
+                <li><a href="/mes-commandes">Orders</a></li>
+            </ul>
+        </nav>
+        <img src="/images/cart.png" width="30px" height="30px">
+        <img src="/images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+</div>
+
+
+
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img th:src="${product.illustration}" width="400px" height="600px"/>
+        </div>
+        <div class="col-2">
+            <p>Home / Product</p>
+            <h1 th:text="${product.name}"></h1>
+            <h4><span th:text="${product.price}"></span>€</h4>
+            <form th:action="|/add-cart/${product.getId()}|" th:object="${product}">
+                <select>
+                    <option>Select Size</option>
+                    <option>XXL</option>
+                    <option>XL</option>
+                    <option>Large</option>
+                    <option>Medium</option>
+                    <option>Small</option>
+                </select>
+                <input type="number" value="1" name="quantity">
+                <button type="submit" class="btn">Add to Cart</button>
+            </form>
+            <h3>Product Details <i class="fa fa-indent"></i></h3>
+            <br>
+            <p th:text="${product.description}"></p>
+
+        </div>
+    </div>
+</div>
+
+<!-------title------->
+
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Related Products</h2>
+        <p>View More</p>
+    </div>
+</div>
+
+<!-------products------->
+
+<div class="small-container">
+<div class="row">
+    <div class="col-4">
+        <img th:src="${products[4].illustration}"/>
+        <h4 th:text="${products[4].name}"></h4>
+        <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+        </div>
+        <p><span th:text="${products[4].price}"></span>€</p>
+    </div>
+
+    <div class="col-4">
+        <img th:src="${products[5].illustration}"/>
+        <h4 th:text="${products[5].name}"></h4>
+        <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+        </div>
+        <p><span th:text="${products[5].price}"></span>€</p>
+    </div>
+
+    <div class="col-4">
+        <img th:src="${products[6].illustration}"/>
+        <h4 th:text="${products[6].name}"></h4>
+        <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+        </div>
+        <p><span th:text="${products[6].price}"></span>€</p>
+    </div>
+
+    <div class="col-4">
+        <img th:src="${products[7].illustration}"/>
+        <h4 th:text="${products[7].name}"></h4>
+        <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+        </div>
+        <p><span th:text="${products[7].price}"></span>€</p>
+    </div>
+</div>
+</div>
+
+
+<!---------footer---------->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+
+            </div>
+            <div class="footer-col-2">
+                <img src="/images/image1.jpg">
+            </div>
+            <div class="footer-col-3">
+                <h3>Contexte</h3>
+                <p>Projet académique développé dans le cadre du cursus MDBS au sein de l'université de Côte d'Azur.</p>
+            </div>
+            <div class="footer-col-4">
+                <h3>Nous suivre:</h3>
+                <ul>
+                    <a href="#"><li>Facebook</li></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2022_MACKPAYEN_Prince_M2_MBDS </p>
+</div>
+
+<!--------js for toggle menu---------->
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+    MenuItems.style.maxHeight = "0px";
+
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px"){
+            MenuItems.style.maxHeight = "200px";
+        }
+        else{
+            MenuItems.style.maxHeight = "0px";
+        }
+    }
+
+</script>
+
+</body>
+</html>

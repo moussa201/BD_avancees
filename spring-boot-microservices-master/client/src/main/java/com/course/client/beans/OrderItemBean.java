@@ -1,23 +1,20 @@
 package com.course.client.beans;
 
-public class CartItemBean {
+public class OrderItemBean implements Item{
 
     private Long id;
 
     private Long productId;
-
+    private Double totalPrice;
     private Integer quantity;
 
-    public CartItemBean() {
+    public OrderItemBean() {
     }
 
-    public CartItemBean(Long id, Long productId, Integer quantity) {
-        this.id = id;
+    public OrderItemBean(Long productId, Integer quantity, Double totalPrice) {
         this.productId = productId;
         this.quantity = quantity;
-    }
-
-    public CartItemBean(ProductBean productBean, Integer quantity) {
+        this.totalPrice = totalPrice;
     }
 
     public Long getId() {
@@ -44,8 +41,12 @@ public class CartItemBean {
         this.quantity = quantity;
     }
 
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
     @Override
     public String toString() {
-        return "Cart Item :"+id+":"+productId+":"+quantity;
+        return "Order Item :"+id+":"+productId+":"+quantity;
     }
 }

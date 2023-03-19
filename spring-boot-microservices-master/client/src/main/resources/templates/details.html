@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du produit</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/orders">Panier</a></li>
+    </ul>
+</nav>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{'https://source.unsplash.com/random/400x400?'+${product.name}}" alt="Image de ${product.name}">
+                    <h2 th:text="${product.name}"></h2>
+                  <p th:text="${product.description}"></p>
+                        <p>Prix : <span th:text="${product.price}"></span> €</p>
+                           <form th:action="@{/add-to-cart/{id}(id=${product.id})}" method="post">
+                             <label for="quantity">Quantité :</label>
+                             <input type="number" id="quantity" name="quantity" value="1" min="1">
+                             <button type="submit">Ajouter au panier</button>
+                           </form>
+                       </div>
+                      </div>
+            </div>
+      </div>
+   </body>
+</html>

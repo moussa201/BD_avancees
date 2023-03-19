@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Historique des commandes</title>
+</head>
+<body>
+<h1>Historique des commandes</h1>
+<ul>
+  <th:block th:each="order : ${orders}">
+    <li>
+      <h2 th:text="${order.id}"></h2>
+      <p>Total price: <span th:text="${order.totalPrice}"></span></p>
+      <p>Order date: <span th:text="${order.date}"></span></p>
+      <p>Status: <span th:text="${order.status}"></span></p>
+      <ul>
+        <th:block th:each="orderItem : ${order.orderItems}">
+          <li>
+            <h3 th:text="${orderItem.product.name}"></h3>
+            <p>Quantity: <span th:text="${orderItem.quantity}"></span></p>
+            <p>Price: <span th:text="${orderItem.price}"></span></p>
+          </li>
+        </th:block>
+      </ul>
+    </li>
+  </th:block>
+</ul>
+</body>
+</html>

@@ -1,23 +1,28 @@
-package com.course.client.beans;
+package com.example.order.Commande;
 
-public class CartItemBean {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class OrderItem {
+
+    @Id
+    @GeneratedValue
     private Long id;
 
     private Long productId;
-
+    private Double totalPrice;
     private Integer quantity;
 
-    public CartItemBean() {
+    public OrderItem() {
     }
 
-    public CartItemBean(Long id, Long productId, Integer quantity) {
+    public OrderItem(Long id, Long productId, Integer quantity, Double totalPrice) {
         this.id = id;
         this.productId = productId;
         this.quantity = quantity;
-    }
-
-    public CartItemBean(ProductBean productBean, Integer quantity) {
+        this.totalPrice = totalPrice;
     }
 
     public Long getId() {
@@ -47,5 +52,9 @@ public class CartItemBean {
     @Override
     public String toString() {
         return "Cart Item :"+id+":"+productId+":"+quantity;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 }

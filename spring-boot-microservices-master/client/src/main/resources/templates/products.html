@@ -52,22 +52,17 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <th:block th:each="product : ${products}">
-                        <div class="col-md-4 mb-3">
-                            <div class="card">
-                                <img class="card-img-top" th:src="@{'https://source.unsplash.com/random/400x400?'+${product.name}}" alt="Image de ${product.name}">
-                                <div class="card-body">
-                                    <h5 class="card-title" th:text="${product.name}"></h5>
-                                    <p class="card-text" th:text="${product.description}"></p>
-                                    <p class="card-text" th:text="${product.price}"></p>
-                                    <a th:href="@{/details/{id}(id=${product.id})}" class="btn btn-primary">Détails</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </th:block>
+                    <div th:each="product : ${products}" class="col-md-4 my-1">
+                        <a th:href="@{|/details/${product.id}|}" >
+                            <img th:src="${product.illustration}"  class="card-img-top" />
+                            <p th:text= "${product.name}"></p>
+                            <form th:action="@{/add-to-cart/{id}(id=${product.id})}" method="post">
+                                <input type="number" name="quantity" value="1" min="1">
+                                <button type="submit">Ajouter au panier</button>
+                            </form>
+                        </a>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

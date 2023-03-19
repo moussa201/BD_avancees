@@ -61,4 +61,15 @@ public class CartController {
 
         return new ResponseEntity<CartItem>(cartItem, HttpStatus.CREATED);
     }
+
+    @PutMapping(value = "/cart")
+    @Transactional
+    public ResponseEntity<Cart> updateCart(@RequestBody Cart cart)
+    {
+        if (cart == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Couldn't create a new cart");
+        cartRepository.save(cart);
+
+        return new ResponseEntity<Cart>(cart, HttpStatus.OK);
+    }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+</head>
+<body>
+<h1>Shopping Cart</h1>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+    <th></th>
+  </tr>
+  <tr th:each="product : ${products}">
+    <td th:text="${product.name}"></td>
+    <td th:text="${product.price}"></td>
+    <td th:text="${product.quantity}"></td>
+    <td th:text="${product.totalPrice}"></td>
+    <td><a th:href="@{'/cart/remove/' + ${product.id}}">Remove</a></td>
+  </tr>
+</table>
+<p>Total price: <span th:text="${totalPrice}"></span></p>
+<a href="/checkout">Proceed to checkout</a>
+</body>
+</html>
